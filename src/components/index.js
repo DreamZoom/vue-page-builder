@@ -1,8 +1,10 @@
 import pageBuilder from "./page-builder";
 
-
-
+import draggable from 'vuedraggable';
+import render from "./elements/render";
 const components ={
+    draggable,
+    render,
     "page-builder":pageBuilder
 }
 
