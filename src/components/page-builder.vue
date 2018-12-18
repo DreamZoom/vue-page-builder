@@ -19,10 +19,12 @@
             </el-card>
         </div>
         <div class="page-editor-main">
-            <gui-draggable class="page-builder-wapper" v-model="list" :options="{group:{name:'people',put:true}, ghostClass: 'ghost'}">
+            <gui-draggable class="page-builder-wapper" v-model="list" :options="{group:{name:'people',put:true}, ghostClass: 'ghost'}" ref="page">
                 
                  <gui-render  v-for="(item,i) in list" :key="i" :element="item"> </gui-render>
             </gui-draggable>
+
+            <el-button round @click="exportJson">圆角按钮</el-button>
         </div>
     </div>
 </template>
@@ -36,6 +38,11 @@
                 elements: elements.elements,
                 layouts:elements.layouts,
                 list: []
+            }
+        },
+        methods:{
+            exportJson(){
+                console.log(this)
             }
         }
     }

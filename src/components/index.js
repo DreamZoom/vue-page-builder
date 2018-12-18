@@ -2,6 +2,7 @@ import pageBuilder from "./page-builder";
 
 import draggable from 'vuedraggable';
 import render from "./elements/render";
+
 const components ={
     draggable,
     render,
@@ -16,7 +17,6 @@ const install = function(Vue, opts = {}) {
         Vue.component("gui-"+key, components[key]);
     });
 
-    
 };
 
 // auto install

@@ -6,10 +6,13 @@ export default {
             return h(this.element.component,{props:{element:this.element}});
         }
         else{
-            return h("div",{});
+            return h("div",{ class:"sss"});
         }
         
 
+    },
+    mounted(){
+        console.log(this.element);
     },
     props:{
         element:Object
