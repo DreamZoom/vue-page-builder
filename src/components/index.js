@@ -1,12 +1,11 @@
 import pageBuilder from "./page-builder";
 
 import draggable from 'vuedraggable';
-import render from "./elements/render";
-
+import dragableBox from "./dragable-box.vue";
 const components ={
     draggable,
-    render,
-    "page-builder":pageBuilder
+    "page-builder":pageBuilder,
+    "dragable-box":dragableBox
 }
 
 const install = function(Vue, opts = {}) {
