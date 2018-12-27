@@ -1,5 +1,7 @@
 <template>
     <div>
+        jhj
+        <slot></slot>
     </div>
 </template>
 <script>

@@ -1,16 +1,16 @@
 <template>
     <el-row :gutter="20">
-        <el-col :span="6">
+        <el-col :span="8">
             <div class="grid-content bg-purple">
                 <gui-dragable-box ref="c1"></gui-dragable-box>
             </div>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="8">
             <div class="grid-content bg-purple">
                 <gui-dragable-box ref="c2"></gui-dragable-box>
             </div>
         </el-col>
-        <el-col :span="12">
+        <el-col :span="8">
             <div class="grid-content bg-purple">
                <gui-dragable-box ref="c3"></gui-dragable-box>
             </div>
