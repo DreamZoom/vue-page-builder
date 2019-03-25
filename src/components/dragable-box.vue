@@ -8,7 +8,6 @@
     export default {
         extends: element,
         methods: {
-
         }
     }
 </script>

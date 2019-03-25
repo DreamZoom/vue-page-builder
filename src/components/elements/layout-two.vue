@@ -13,6 +13,12 @@
 import element from "../element";
 export default {
     extends:element,
+    props:{
+        column:{
+            type:Number,
+            default:1
+        }
+    },
     data(){
         return{
 

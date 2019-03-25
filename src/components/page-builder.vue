@@ -5,16 +5,21 @@
                 <div slot="header" class="clearfix">
                     <span>组件</span>
                 </div>
-                <gui-draggable v-model="elements" :options="{group:{ name:'people', pull:'clone',put:false},sort:true, ghostClass: 'ghost'}">
-                    <div v-for="(element,i) in elements" :key="i">{{element.name}}</div>
+                <gui-draggable v-model="elements" :options="{group:{ name:'list', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}">
+                    <div v-for="(element,i) in elements" :key="i">
+                        <img :src="element.icon" class="tool-icon">
+                    </div>
                 </gui-draggable>
             </el-card>
+            <p></p>
             <el-card class="box-card">
                 <div slot="header" class="clearfix">
                     <span>布局</span>
                 </div>
-                <gui-draggable v-model="layouts" :options="{group:{ name:'people', pull:'clone',put:false},sort:true, ghostClass: 'ghost'}">
-                    <div v-for="(element,i) in layouts" :key="i">{{element.name}}</div>
+                <gui-draggable v-model="layouts" :options="{group:{ name:'list', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}">
+                    <div v-for="(element,i) in layouts" :key="i">
+                        <img :src="element.icon" class="tool-icon">
+                    </div>
                 </gui-draggable>
             </el-card>
         </div>
@@ -62,6 +67,9 @@
         position: absolute;
         width: 200px;
         height: 100%;
+    }
+    .tool-icon{
+        width: 60px;
     }
     .page-editor-main {
         margin-left: 200px;

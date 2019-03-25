@@ -16,3 +16,8 @@ export default {
   }
 };
 </script>
+<style>
+.image-uploader{
+
+}
+</style>
