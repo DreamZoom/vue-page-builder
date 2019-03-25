@@ -1,8 +1,8 @@
 <template>
     <div class="my-editor">
-        <gui-page-builder>
+        <gui-page-editor>
 
-        </gui-page-builder>
+        </gui-page-editor>
     </div>
 </template>
 <style>

@@ -4,10 +4,19 @@
 </template>
 <script>
     export default {
+        props:{
+            value:Object
+        },
         data() {
             return {
-                childs: []
+               
             }
+        },
+        mounted(){
+            if(!this.value.childs){
+                this.value.childs=[];
+            }
+           
         },
         methods: {
             export () {
