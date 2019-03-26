@@ -1,23 +1,20 @@
 <template>
-    <div>
-        <slot></slot>
-    </div>
+    <component :is="component" ref="element" :value="value"></component>
 </template>
+
+
 <script>
+    import elements from "./elements/index.js"
     export default {
-        props:{
-            value:Object
+        props: {
+            value: Object
         },
-        data() {
-            return {
-               
+        computed:{
+            component(){
+                const key = this.value.tag;
+                const comp = elements[key] || {template:"<div>此组件无效</div>"}
+                return comp;
             }
-        },
-        mounted(){
-            if(!this.value.childs){
-                this.value.childs=[];
-            }
-           
         },
         methods: {
             export () {

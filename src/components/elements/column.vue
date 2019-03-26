@@ -1,12 +1,12 @@
 <template>
-    <gui-draggable class="flex-container flex-row" v-model="value.childs"></gui-draggable>
+    <gui-draggable class="flex-container flex-column" v-model="value.childs"></gui-draggable>
 </template>
 <script>
     import comp from "./comp";
     export default {
         extends: comp,
-        beforeUpdate(){
-            console.log(this.value);
+        mounted(){
+            console.log(this);
         },
         methods: {
         }
@@ -15,13 +15,15 @@
 <style>
 .flex-container{
     min-height: 40px;
+   
 }
 
-.flex-row{
+.flex-column{
     display: flex;
-
+    flex-direction: column;
+    padding-bottom: 40px;
 }
-.flex-row > *{
+.flex-column > *{
     flex:1;
 }
 </style>

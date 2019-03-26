@@ -1,25 +1,23 @@
 import pageBuilder from "./page-builder";
 import pageEditor from "./page-editor";
+import draggable from "./draggable"
+import element from "./element"
 
-import draggable from 'vuedraggable';
-import dragableBox from "./dragable-box.vue";
-import comps from "./elements/components"
 const components ={
     'page-editor':pageEditor,
-    draggable,
     "page-builder":pageBuilder,
-    "dragable-box":dragableBox
+    draggable,
+    element
 }
 
 const install = function(Vue, opts = {}) {
     if (install.installed) return;
     
-
     Object.keys(components).forEach(key => {
         Vue.component("gui-"+key, components[key]);
+        console.log(key);
     });
    
-    Vue.use(comps);
 };
 
 // auto install

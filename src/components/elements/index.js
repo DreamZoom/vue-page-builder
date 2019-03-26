@@ -1,9 +1,8 @@
-import layout from "./layout-two";
 import image from "./image";
 import row from "./row";
-
+import column from "./column";
 export default {
     row,
-    layout,
-    image
+    column,
+    image,
 };

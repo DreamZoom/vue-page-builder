@@ -1,13 +1,13 @@
 <template>
-  <div>
+  <div class="image-box">
     <img :src="url" alt style="width:100%">
   </div>
 </template>
 
 <script>
-import element from "../element";
+import comp from "./comp";
 export default {
-  extends: element,
+  extends: comp,
   data() {
     return {
       url:
@@ -17,7 +17,7 @@ export default {
 };
 </script>
 <style>
-.image-uploader{
-
+.image-box img{
+  margin-bottom: -4px;
 }
 </style>
