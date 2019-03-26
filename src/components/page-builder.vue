@@ -25,7 +25,7 @@
         </div>
         <div class="page-editor-main">
             <gui-dragable-box ref="root"></gui-dragable-box>
-            <el-button round @click="exportHtml">导出</el-button>
+            <el-button round @click="exportJson">导出</el-button>
         </div>
     </div>
 </template>

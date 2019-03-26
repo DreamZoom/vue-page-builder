@@ -14,7 +14,8 @@ export default {
     props:{
         column:{
             type:Number,
-            default:1
+            default:3
+            
         }
     },
     data(){
