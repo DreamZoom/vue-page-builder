@@ -1,31 +1,8 @@
 <template>
-    <div class="page-editor">
-        <div class="page-editor-tools">
-            <el-card class="box-card">
-                <div slot="header" class="clearfix">
-                    <span>组件</span>
-                </div>
-                <gui-draggable v-model="elements" :options="{group:{ name:'list', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}">
-                    <div v-for="(element,i) in elements" :key="i">
-                        <img :src="element.icon" class="tool-icon">
-                    </div>
-                </gui-draggable>
-            </el-card>
-            <p></p>
-            <el-card class="box-card">
-                <div slot="header" class="clearfix">
-                    <span>布局</span>
-                </div>
-                <gui-draggable v-model="layouts" :options="{group:{ name:'list', pull:'clone',put:false},sort:false, ghostClass: 'ghost'}">
-                    <div v-for="(element,i) in layouts" :key="i">
-                        <img :src="element.icon" class="tool-icon">
-                    </div>
-                </gui-draggable>
-            </el-card>
-        </div>
-        <div class="page-editor-main">
-            <gui-dragable-box ref="root"></gui-dragable-box>
-            <el-button round @click="exportJson">导出</el-button>
+    <div class="page-workspace">
+        <div class="page-project-list"></div>
+        <div class="page-workspace-main">
+            <gui-page-editor v-model="page" :register="register"> </gui-page-editor>
         </div>
     </div>
 </template>

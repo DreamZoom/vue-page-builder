@@ -13,6 +13,7 @@ Vue.use(components);
 Vue.use(ElementUI);
 
 
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

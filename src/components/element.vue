@@ -12,18 +12,15 @@
         computed:{
             component(){
                 const key = this.value.tag;
-                const comp = elements[key] || {template:"<div>此组件无效</div>"}
+                const extend_elements = this.$elements || {};
+                const comp = elements[key] || extend_elements[key] || {template:"<div>此组件无效</div>"};
                 return comp;
             }
         },
         methods: {
             export () {
-                var childs = this.childs.map((item) => {
-                    console.log(item);
-                    return item.export();
-                });
                 return {
-                    childs
+                    ...this.value
                 };
             }
         }

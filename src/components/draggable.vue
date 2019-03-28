@@ -33,6 +33,7 @@
         },
         methods: {
             handleChange(){
+                console.log(this.list)
                 this.$emit("input",this.list);
             }
         }

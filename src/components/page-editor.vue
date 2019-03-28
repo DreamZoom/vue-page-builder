@@ -1,11 +1,12 @@
 <template>
   <div class="gui-page-editor">
     <div class="gui-page-editor-tools">
-      <div class="tool-group" v-for="(group,i) in groups" :key="i">
-        <h3 class="tool-group-title">{{group.name}}</h3>
-        <vue-draggable v-model="group.components" :options="{group:{ name:'people', pull:'clone',put:false},sort:false}">
-          <div class="tool-item" v-for="(component,j) in group.components" :key="j">
-            <img src="../assets/icons/buju.png" alt srcset><br /> {{component.name}}
+      <div class="tool-group" v-for="(group,key) in groups" :key="key">
+        <h3 class="tool-group-title">{{key}}</h3>
+        <vue-draggable v-model="groups[key]" :options="{group:{ name:'people', pull:'clone',put:false},sort:false}">
+          <div class="tool-item" v-for="(component,j) in groups[key]" :key="j">
+            <!-- <gui-element :value="{tag:component.tag}"></gui-element> -->
+            {{component.name}}
           </div>
         </vue-draggable>
       </div>
@@ -25,22 +26,34 @@
       value: {
         type: Object,
         required: true
+      },
+      register: {
+        type: Function,
+        default: function() {
+        }
       }
     },
     components: {
       vueDraggable
     },
-    beforeMount(){
-      this.value.root={
-        tag:"column",
-        childs:[]
+    beforeMount() {
+      this.value.root = {
+        tag: "column",
+        childs: []
       }
+      
+      //注册标签
+      var extendElements=[];
+      this.register(extendElements);
+      extendElements.map((ele)=>{
+        const {name,icon,tag,template,group} = ele;
+        this.registerElement(name,icon,tag,template,group);
+      });
     },
     data() {
       return {
-        groups: [{
-          name: "基本组件",
-          components: [{
+        groups: {
+          "base": [{
               name: "垂直布局",
               icon: "buju.jpg",
               tag: "column"
@@ -55,9 +68,32 @@
               icon: "buju.jpg",
               tag: "image"
             }
-          ]
-        }]
+          ],
+          "extends":[]
+        }
       };
+    },
+    methods: {
+      registerElement(name,icon,tag,template,group) {
+
+        if(!tag) return;
+        if(!template) return;
+
+        template.mixins=[{
+          props:{
+            value:Object
+          }
+        }]
+
+        this.$elements[tag]=template;
+
+        if(!group || group=="base") group="extends";
+        this.groups[group]=this.groups[group]||[];
+
+        this.groups[group].push({
+          name,icon,tag
+        });
+      }
     }
   };
 </script>
@@ -72,6 +108,7 @@
   .gui-page-editor-tools {
     flex-basis: 200px;
     border-right: solid 1px #e5e5e5;
+    padding: 10px;
   }
   .gui-page-editor-main {
     flex: 1;
@@ -82,7 +119,7 @@
     padding-left: 10px;
   }
   .gui-page-editor-tools .tool-item {
-    display: inline-block;
+   display: block;
   }
   .gui-page-editor-tools .tool-item img {
     width: 60px;
