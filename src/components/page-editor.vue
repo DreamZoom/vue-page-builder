@@ -29,25 +29,34 @@
       },
       register: {
         type: Function,
-        default: function() {
-        }
+        default: function() {}
       }
     },
     components: {
       vueDraggable
     },
     beforeMount() {
-      this.value.root = {
-        tag: "column",
-        childs: []
+      if (!this.value.root) {
+        this.value.root = {
+          tag: "column",
+          childs: []
+        }
       }
-      
+
+      console.log(this.value.root);
+
       //注册标签
-      var extendElements=[];
+      var extendElements = [];
       this.register(extendElements);
-      extendElements.map((ele)=>{
-        const {name,icon,tag,template,group} = ele;
-        this.registerElement(name,icon,tag,template,group);
+      extendElements.map((ele) => {
+        const {
+          name,
+          icon,
+          tag,
+          template,
+          group
+        } = ele;
+        this.registerElement(name, icon, tag, template, group);
       });
     },
     data() {
@@ -69,29 +78,26 @@
               tag: "image"
             }
           ],
-          "extends":[]
+          "extends": []
         }
       };
     },
     methods: {
-      registerElement(name,icon,tag,template,group) {
-
-        if(!tag) return;
-        if(!template) return;
-
-        template.mixins=[{
-          props:{
-            value:Object
+      registerElement(name, icon, tag, template, group) {
+        if (!tag) return;
+        if (!template) return;
+        template.mixins = [{
+          props: {
+            value: Object
           }
         }]
-
-        this.$elements[tag]=template;
-
-        if(!group || group=="base") group="extends";
-        this.groups[group]=this.groups[group]||[];
-
+        this.$elements[tag] = template;
+        if (!group || group == "base") group = "extends";
+        this.groups[group] = this.groups[group] || [];
         this.groups[group].push({
-          name,icon,tag
+          name,
+          icon,
+          tag
         });
       }
     }
@@ -119,7 +125,7 @@
     padding-left: 10px;
   }
   .gui-page-editor-tools .tool-item {
-   display: block;
+    display: block;
   }
   .gui-page-editor-tools .tool-item img {
     width: 60px;

@@ -9,10 +9,14 @@ class workspace {
     constructor(){
         this.store = store.get("workspace")||this.store;
     }
+    load(){
+        this.store = store.get("workspace")||this.store;
+    }
 
     getData(){
+        let data = store.get("workspace")||this.store;
         return {
-            ...this.store
+            ...data
         }
     }
 

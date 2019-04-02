@@ -6,7 +6,7 @@
     export default {
         extends: comp,
         mounted(){
-            console.log(this);
+            console.log(this.value);
         },
         methods: {
         }

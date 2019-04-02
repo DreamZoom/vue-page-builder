@@ -2,12 +2,14 @@ import pageBuilder from "./page-builder";
 import pageEditor from "./page-editor";
 import draggable from "./draggable"
 import element from "./element"
+import propertyEditor from "./property-editor";
 
 import directives from "./directives/index"
 
 const components ={
     'page-editor':pageEditor,
     "page-builder":pageBuilder,
+    "property-editor":propertyEditor,
     draggable,
     element
 }

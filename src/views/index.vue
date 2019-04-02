@@ -4,8 +4,8 @@
             <h3>页面列表</h3>
             <div>
                 <el-button-group>
-                    <el-button type="primary" icon="el-icon-edit" @click="createProject"></el-button>
-                    <el-button type="primary" icon="el-icon-share"></el-button>
+                    <el-button type="primary" icon="el-icon-circle-plus-outline" @click="createPage"></el-button>
+                    <el-button type="primary" icon="el-icon-document" @click="save"></el-button>
                     <el-button type="primary" icon="el-icon-delete"></el-button>
                 </el-button-group>
             </div>
@@ -17,6 +17,10 @@
         </div>
         <div class="page-workspace-main">
             <gui-page-editor v-if="page" v-model="page" :register="register"> </gui-page-editor>
+            <div v-if="!page"></div>
+        </div>
+        <div class="page-property-editor">
+            <gui-property-editor></gui-property-editor>
         </div>
     </div>
 </template>
@@ -27,14 +31,24 @@
             return {
                 workspace: {
                     pages: [],
-                    select_index:1
-                },
-                page: {}
+                    select_index:-1
+                }
             }
         },
         mounted() {
-            this.workspace = service.getData();
+            var data = service.getData();
+            var select_index = -1;
+            if(data.pages.length>0) select_index=0;
+            this.workspace = {...data,select_index};
             console.log(this.workspace);
+        },
+        computed:{
+            page(){
+                if(this.workspace.select_index>-1 && this.workspace.select_index<this.workspace.pages.length){
+                    return this.workspace.pages[this.workspace.select_index];
+                }
+                return null;
+            }
         },
         methods: {
             register(elements) {
@@ -58,9 +72,14 @@
             exportJson() {
                 console.log(this.page)
             },
+
+            save(){
+                service.save({...this.workspace});
+                console.log(this.workspace);
+            },
             
-            createProject() {
-                this.$prompt('请输入项目名称', '提示', {
+            createPage() {
+                this.$prompt('请输入页面名称', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消'
                 }).then(({
@@ -69,6 +88,7 @@
                     this.workspace.pages.push({
                         name:value
                     });
+                    this.select(this.workspace.select_index+1);
                     service.save({...this.workspace});
                 }).catch(() => {
                     this.$message({
@@ -79,7 +99,10 @@
             },
             
             select(i){
-                this.workspace.select_index = i;
+                this.workspace.select_index=-1;
+                this.$nextTick(()=>{
+                     this.workspace.select_index = i;
+                })
             }
         }
     }
@@ -89,11 +112,13 @@
     .page-workspace {
         width: 100%;
         height: 100%;
+        position: relative;
     }
     .page-project-list {
         padding: 0 5px;
         width: 200px;
-        float: left;
+        position: absolute;
+        left: 0px;
         height: 100%;
         border-right: solid 1px #ddd;
         /* background-color: #ddd; */
@@ -106,8 +131,17 @@
         background-color: #aaa;
     }
     .page-workspace-main {
-        margin-left: 200px;
+        margin-left: 300px;
+        margin-right: 200px;
         height: 100%;
         overflow: hidden;
+    }
+    .page-property-editor{
+        background-color: #fff;
+        width: 300px;
+        height: 100%;
+        position: absolute;
+        right: 0px;
+        top:0px;
     }
 </style>

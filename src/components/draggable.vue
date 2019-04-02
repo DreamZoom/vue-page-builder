@@ -29,7 +29,11 @@
             }
         },
         beforeMount(){
-            
+            if(this.value && this.value instanceof Array){
+                this.value.map((item)=>{
+                    this.list.push(item);
+                })
+            }
         },
         methods: {
             handleChange(){

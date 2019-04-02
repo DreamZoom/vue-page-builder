@@ -17,6 +17,8 @@
                 return comp;
             }
         },
+        mounted(){
+        },
         methods: {
             export () {
                 return {

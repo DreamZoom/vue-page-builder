@@ -6,7 +6,7 @@
     export default {
         extends: comp,
         beforeUpdate(){
-            console.log(this.value);
+            
         },
         methods: {
         }
