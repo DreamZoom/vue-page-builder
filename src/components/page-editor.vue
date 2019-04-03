@@ -21,6 +21,7 @@
 <script>
   import vueDraggable from 'vuedraggable';
   import elements from "./elements/index.js"
+  import comp from "./elements/comp.js"
   export default {
     props: {
       value: {
@@ -86,11 +87,7 @@
       registerElement(name, icon, tag, template, group) {
         if (!tag) return;
         if (!template) return;
-        template.mixins = [{
-          props: {
-            value: Object
-          }
-        }]
+        template.mixins = [comp];
         this.$elements[tag] = template;
         if (!group || group == "base") group = "extends";
         this.groups[group] = this.groups[group] || [];

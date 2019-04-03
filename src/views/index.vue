@@ -62,10 +62,22 @@
                                 content: "测试"
                             }
                         },
-                        mounted() {
-                            console.log(this.value);
+                        beforeMount() {
+                            if(!this.value.propertys.text){
+                                this.value.propertys.text="请输入内容";
+                            this.value.propertys.padding=5;
+                            }
+                            
+                            //console.log(this.value);
                         },
-                        template: '<p v-editable="value.content">哈哈哈</p>'
+                        computed:{
+                            style(){
+                                return {
+                                    padding:`${this.value.propertys.padding}px`
+                                }
+                            }
+                        },
+                        template:'<p :style="style">{{value.propertys.text||"请输入内容"}}</p>'
                     }
                 });
             },

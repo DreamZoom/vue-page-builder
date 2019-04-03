@@ -1,6 +1,8 @@
 <template>
-    <vue-json-editor v-model="json" :showBtns="false" mode="form" :modes="['form']" lang="ZH_cn" @json-change="onJsonChange">
-    </vue-json-editor>
+    <div>
+        <vue-json-editor v-if="comp" :value="propertys" :showBtns="false" mode="form" :modes="['form']" lang="ZH_cn" @json-change="onJsonChange">
+        </vue-json-editor>
+    </div>
 </template>
 <script>
     //import jsoneditor from 'json-editor'
@@ -11,42 +13,19 @@
         },
         data() {
             return {
-                json: {
-                    "Array": [1, 2, 3],
-                    "Boolean": true,
-                    "Null": null,
-                    "Number": 123,
-                    "Object": {
-                        "a": "b",
-                        "c": "d"
-                    },
-                    "String": "Hello World"
-                }
             }
         },
-        mounted() {
-            // let container = this.$refs.editor;
-            // this.editor = new jsoneditor(container, {
-            //     mode: 'form',
-            //     indentation: 4,
-            //     search: true,
-            //     theme: "bootstrap2"
-            // });
-            // this.editor.set({
-            //     "Array": [1, 2, 3],
-            //     "Boolean": true,
-            //     "Null": null,
-            //     "Number": 123,
-            //     "Object": {
-            //         "a": "b",
-            //         "c": "d"
-            //     },
-            //     "String": "Hello World"
-            // })
+        computed: {
+            comp() {
+                return this.$store.state.current;
+            },
+            propertys(){
+                return this.$store.state.current? this.$store.state.current.propertys:{};
+            }
         },
-        methods:{
-            onJsonChange(){
-
+        methods: {
+            onJsonChange(json) {
+                this.$store.commit('update',json);
             }
         }
     }

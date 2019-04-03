@@ -2,11 +2,10 @@
     <gui-draggable class="flex-container flex-column" v-model="value.childs"></gui-draggable>
 </template>
 <script>
-    import comp from "./comp";
+    import comp from "./comp.js";
     export default {
         extends: comp,
         mounted(){
-            console.log(this.value);
         },
         methods: {
         }

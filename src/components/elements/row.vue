@@ -1,27 +1,22 @@
 <template>
-    <gui-draggable class="flex-container flex-row" v-model="value.childs"></gui-draggable>
+    <gui-draggable class="flex-container flex-row" v-model="value.childs">
+    </gui-draggable>
 </template>
 <script>
-    import comp from "./comp";
+    import comp from "./comp.js";
     export default {
         extends: comp,
-        beforeUpdate(){
-            
-        },
-        methods: {
-        }
+        methods: {}
     }
 </script>
 <style>
-.flex-container{
-    min-height: 40px;
-}
-
-.flex-row{
-    display: flex;
-
-}
-.flex-row > *{
-    flex:1;
-}
+    .flex-container {
+        min-height: 40px;
+    }
+    .flex-row {
+        display: flex;
+    }
+    .flex-row>* {
+        flex: 1;
+    }
 </style>
