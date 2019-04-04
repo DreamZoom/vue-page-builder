@@ -26,6 +26,7 @@
 </template>
 <script>
     import service from "../components/services/workspace"
+    import register from "../register.js"
     export default {
         data() {
             return {
@@ -52,34 +53,9 @@
         },
         methods: {
             register(elements) {
-                elements.push({
-                    name: "测试",
-                    icon: "",
-                    tag: "kkk",
-                    template: {
-                        data() {
-                            return {
-                                content: "测试"
-                            }
-                        },
-                        beforeMount() {
-                            if(!this.value.propertys.text){
-                                this.value.propertys.text="请输入内容";
-                            this.value.propertys.padding=5;
-                            }
-                            
-                            //console.log(this.value);
-                        },
-                        computed:{
-                            style(){
-                                return {
-                                    padding:`${this.value.propertys.padding}px`
-                                }
-                            }
-                        },
-                        template:'<p :style="style">{{value.propertys.text||"请输入内容"}}</p>'
-                    }
-                });
+
+                register(elements);
+
             },
             exportJson() {
                 console.log(this.page)
@@ -143,8 +119,8 @@
         background-color: #aaa;
     }
     .page-workspace-main {
-        margin-left: 300px;
-        margin-right: 200px;
+        margin-left: 200px;
+        margin-right: 300px;
         height: 100%;
         overflow: hidden;
     }

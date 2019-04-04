@@ -12,5 +12,13 @@ export default {
             console.log("mount1");
         }
     },
+    computed:{
+        propertys(){
+            return this.value.propertys||{};
+        },
+        px(){
+            return "px";
+        }
+    }
 }
 

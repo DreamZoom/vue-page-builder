@@ -7,12 +7,17 @@ import router from './router'
 import components from "./components/index"
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+import Vant from 'vant';
+import 'vant/lib/index.css';
+
+
 import Vuex from 'vuex'
 
 Vue.config.productionTip = false
 Vue.use(components);
 Vue.use(ElementUI);
 Vue.use(Vuex)
+Vue.use(Vant);
 
 const store = new Vuex.Store({
   state: {

@@ -12,6 +12,7 @@
   "dependencies": {
     "element-ui": "^2.4.11",
     "sortable": "^2.0.0",
+    "vant": "^1.6.12",
     "vue": "^2.5.2",
     "vue-json-editor": "^1.3.0",
     "vue-router": "^3.0.1",
